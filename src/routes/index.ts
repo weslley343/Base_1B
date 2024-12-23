@@ -1,11 +1,9 @@
 import { Router } from "express";
 import carRouters from "./modules/vehicle";
-// import uploadRouter from "./modules/upload"
-
+import uploadRouters from "./modules/upload";
 
 const router = Router()
 
 router.use('/vehicle', carRouters)
-// router.use('/upload', uploadRouter)
-
+router.use('/upload', uploadRouters)
 export default router

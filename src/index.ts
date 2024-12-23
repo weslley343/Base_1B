@@ -13,10 +13,6 @@ app.get('/', (req: Request, res: Response) => {
     res.json({ "msg": "hello BASE" })
 });
 
-// app.listen(port, () => {
-//     console.log(`Server is running at http://localhost:${port}`);
-// });
-
 if (require.main === module) {
     app.listen(port, () => {
         console.log(`Server is running at http://localhost:${port}`);
