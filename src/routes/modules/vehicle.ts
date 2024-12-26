@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { body, param, query } from 'express-validator';
 import {
   getAllVehicles,
   getVehicleById,
@@ -10,9 +11,11 @@ import {
 const router = Router();
 
 router.get('/', getAllVehicles); // Listar todos os veículos
-router.get('/:id', getVehicleById); // Obter veículo por ID
+router.get('/:id', param('id').isUUID(), getVehicleById); // Obter veículo por ID
 router.post('/', createVehicle); // Criar novo veículo
 router.delete('/:id', deleteById); // Criar novo veículo
 router.put('/:id', updateVehicle)
+
+
 
 export default router;

@@ -34,12 +34,12 @@ export const getVehicleById = async (req: Request, res: Response) => {
 
 // Criar novo veículo
 export const createVehicle = async (req: Request, res: Response) => {
-  const { car_name, license_plate, driver_name, service_type } = req.body;
+  const { car_name, license_plate, driver_name, service_type, initial_km, final_km, observation} = req.body;
 
   try {
     const { data, error } = await supabase
       .from('vehicles')
-      .insert([{ car_name, license_plate, driver_name, service_type }])
+      .insert([{ car_name, license_plate, driver_name, service_type, initial_km, final_km, observation}])
       .select();
 
     if (error) throw error;
@@ -76,7 +76,7 @@ export const deleteById = async (req: Request, res: Response) => {
 //update Vechile
 export const updateVehicle = async (req: Request, res: Response) => {
   const id = req.params.id;
-  const { car_name, license_plate, driver_name, service_type } = req.body;
+  const { car_name, license_plate, driver_name, service_type, final_km, initial_km, observation} = req.body;
 
   try {
     // Verifica se o ID foi fornecido
@@ -87,7 +87,7 @@ export const updateVehicle = async (req: Request, res: Response) => {
     // Executa o update na tabela vehicles
     const { data, error } = await supabase
       .from('vehicles')
-      .update({ car_name, license_plate, driver_name, service_type })
+      .update({ car_name, license_plate, driver_name, service_type, final_km, initial_km, observation})
       .match({ id })  // Localiza o veículo pelo ID
       .select();
 
