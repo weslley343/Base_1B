@@ -1,9 +1,15 @@
 import express, { Request, Response } from 'express';
 import routes from './routes'
 import dotenv from 'dotenv';
+import cors from 'cors'
+
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
+
+
+app.use(cors())
+
 console.log(`Server is running on port ${port}`);
 
 app.use(express.json());

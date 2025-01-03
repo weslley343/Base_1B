@@ -10,10 +10,10 @@ import {
 
 const router = Router();
 
-router.get('/', getAllVehicles); // Listar todos os veículos
-router.get('/:id', param('id').isUUID(), getVehicleById); // Obter veículo por ID
-router.post('/', createVehicle); // Criar novo veículo
-router.delete('/:id', deleteById); // Criar novo veículo
+router.get('/', getAllVehicles);
+router.get('/:id', param('id').isUUID(), getVehicleById);
+router.post('/', createVehicle);
+router.delete('/:id', deleteById);
 router.put('/:id', updateVehicle)
 
 

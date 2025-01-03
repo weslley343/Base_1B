@@ -8,26 +8,12 @@ const pwd = process.env.SENHA || '';
 const usr = process.env.USUARIO || '';
 
 export const signin = async (req: Request, res: Response) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-        res.status(400).json({ error: result.array() })
-        return
+    const { password, user } = req.body;
+    if (pwd !== password || user !== usr) {
+        res.status(400).json({ error: "Wrong username or password" });
     }
 
-    try {
-        const { password, user } = req.body;
+    const [aceToken, refToken] = generateTokens(password);
 
-        //console.log(pwd, password, usr, user)
-        if (pwd !== password || user !== usr) {
-            res.status(400).json({ error: "Wrong username or password" });
-            return
-        }
-
-        const [aceToken, refToken] = generateTokens(password);
-
-        res.status(200).json({ acetoken: aceToken, reftoken: refToken });
-        return
-    } catch (err: any) {
-        res.status(500).json({ error: err.message });
-    }
+    res.status(200).json({ acetoken: aceToken, reftoken: refToken });
 };
